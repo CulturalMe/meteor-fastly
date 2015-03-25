@@ -1,6 +1,8 @@
 Package.describe({
     name: "edgee:fastly",
-    summary: "Fastly API client and configurator"
+    summary: "Fastly API client and configurator",
+    version: "0.0.1",
+    git: "https://github.com/CulturalMe/meteor-fastly"
 });
 
 
