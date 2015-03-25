@@ -32,7 +32,7 @@ export DDP_DEFAULT_CONNECTION_URL=//my-meteor-app.herokuapp.com
 
 ### Purge Cache on Update
 
-Purge cache whenever you push a new release of your App, but running
+Purge cache whenever you push a new release of your App, by running
 `.autoupdate()` when your app starts up. Just add the following code to your
 app:
 
