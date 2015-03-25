@@ -21,6 +21,7 @@ burden is significantly reduced.
 
 ## Setup
 
+### Websockets / DDP
 On deployment run the app with the `DDP_DEFAULT_CONNECTION_URL` set to the back
 end URL so that meteor will bypass the CDN for DDP connections (websockets):
 
@@ -28,6 +29,8 @@ end URL so that meteor will bypass the CDN for DDP connections (websockets):
 # Example:
 export DDP_DEFAULT_CONNECTION_URL=//my-meteor-app.herokuapp.com
 ```
+
+### Purge Cache on Update
 
 Purge cache whenever you push a new release of your App:
 
@@ -38,6 +41,8 @@ var fastly = new Fastly(Meteor.settings.fastly.apiKey);
 //Automatically purge cache for old app versions:
 fastly.autoupdate(Meteor.settings.fastly.serviceId);
 ```
+
+### Auto-Configure Fastly Service with domain and SSL
 
 If you don't want to configure your fastly instance manually you can do use:
 
