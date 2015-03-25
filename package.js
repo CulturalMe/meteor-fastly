@@ -1,6 +1,6 @@
 Package.describe({
     name: "edgee:fastly",
-    summary: "Fastly API client for Meteor JS"
+    summary: "Fastly API client and configurator"
 });
 
 
@@ -9,6 +9,13 @@ Npm.depends({
 });
 
 Package.onUse(function (api) {
-    api.addFiles("fastly.js", "server");
+    api.versionsFrom('METEOR@1.0');
+
+    api.use(["mongo", "underscore"], "server");
+    api.use(["autoupdate", "webapp"], "server", {
+        weak: true
+    });
+
+    api.addFiles(["fastly.js", "headers.js", "configurator.js"], "server");
     api.export("Fastly");
 });
