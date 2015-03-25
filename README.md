@@ -32,19 +32,24 @@ export DDP_DEFAULT_CONNECTION_URL=//my-meteor-app.herokuapp.com
 
 ### Purge Cache on Update
 
-Purge cache whenever you push a new release of your App:
+Purge cache whenever you push a new release of your App, but running
+`.autoupdate()` when your app starts up. Just add the following code to your
+app:
 
 ```JavaScript
 //Instantiate the fastly client:
-var fastly = new Fastly(Meteor.settings.fastly.apiKey);
+if (Meteor.isServer) {
+    var fastly = new Fastly(Meteor.settings.fastly.apiKey);
 
-//Automatically purge cache for old app versions:
-fastly.autoupdate(Meteor.settings.fastly.serviceId);
+    //Automatically purge cache for old app versions:
+    fastly.autoupdate(Meteor.settings.fastly.serviceId);
+}
 ```
 
 ### Auto-Configure Fastly Service with domain and SSL
 
-If you don't want to configure your fastly instance manually you can do use:
+If you don't want to configure your fastly instance manually you can add the
+following to code above.
 
 ```JavaScript
 fastly.configure(Meteor.settings.fastly.serviceId, options);
