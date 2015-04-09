@@ -25,11 +25,13 @@ Fastly.prototype.versionUpdate = function (serviceId, version) {
     }, {
         fields: {_id: 1}
     }).forEach(function (version) {
-        fastly.purgeKey(serviceId, version._id, function (error) {
+        fastly.purgeKey(serviceId, "version-" + version._id, function (error) {
             if (error)
                 throw error;
             else {
-                Fastly.CacheVersions.update(version.id, {$set: {purged: true}});
+                Fastly.CacheVersions.update(version._id, {
+                    $set: {purged: true}
+                });
             }
         });
     });
@@ -84,8 +86,7 @@ Fastly.prototype.autoupdate = function (serviceId, maxAge) {
             }
 
             res.setHeader("Surrogate-Key", [
-                "boilerplate",
-                "boilerplate-" + version
+                "version-" + version
             ].join(" "));
         }
         next();
