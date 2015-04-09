@@ -27,7 +27,8 @@ end URL so that meteor will bypass the CDN for DDP connections (websockets):
 
 ```bash
 # Example:
-export DDP_DEFAULT_CONNECTION_URL=//my-meteor-app.herokuapp.com
+export ROOT_URL=https://www.my-meteor-app.com # Users access your app here
+export DDP_DEFAULT_CONNECTION_URL=//my-meteor-app.herokuapp.com # Your app lives here
 ```
 
 ### Purge Cache on Update
